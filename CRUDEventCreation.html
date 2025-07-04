@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_MAPS_API_KEYlibraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe45NYmqYQFWG-tEo3uSy1Gotpb5a8c3g&libraries=places"></script>
     <style>
         :root {
             --color-primary: #2D0C31;
@@ -1305,6 +1305,10 @@
             font-size: 18px;
           }
         }
+
+        a.btn {
+          text-decoration: none !important;
+        }
     </style>
 </head>
 <body>
@@ -1317,31 +1321,31 @@
     <h2 class="sidebar-title">Claim System</h2>
   </div>
   <div class="sidebar-menu">
-    <a href="YOUR_DASHBOARD_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a href="https://script.google.com/macros/s/AKfycbzYNp35xJjccAsya0HTjrdZ2rXx_-GgiJT1PpztHYYWje3_LPiab4hV9fNypiXy4lo/exec" target="_top" class="sidebar-item">
       <i class="fas fa-tachometer-alt"></i>
       <span>Dashboard</span>
     </a>
-    <a href="YOUR_EVENT_PANEL_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a class="sidebar-item active">
       <i class="fas fa-calendar-alt"></i>
       <span>Event Panel</span>
     </a>
-    <a href="YOUR_CLAIMS_PANEL_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a href="https://script.google.com/macros/s/AKfycbyzt-CBKwSPCfVMDSaWy2EKGVO8-TAfMTbf7nub0KafQmFr-jKw2XVKzKImOM3hEF00/exec" target="_top" class="sidebar-item">
       <i class="fas fa-hand-holding-usd"></i>
       <span>Claims & Allowance Panel</span>
     </a>
-    <a href="YOUR_BUDGET_PANEL_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a href="https://script.google.com/macros/s/AKfycbwQ9m3uoLf1oQVtat-wmhRanjO93a5k5ef0XJY6BaJBnGJz7lSh_0OJc2YRv5hQwco/exec" target="_top" class="sidebar-item">
       <i class="fas fa-dollar-sign"></i>
       <span>Budget & Expenses Panel</span>
     </a>
-    <a href="YOUR_ADVANCE_PURCHASE_PANEL_DEPLOYMENT_LINK" target="_top" class="sidebar-item active">
+    <a href="https://script.google.com/macros/s/AKfycbxysT_mH8BoDqczulSbcDiILyqBMUv7HW9qsXuVMSsHER1z2m_kmGF7-_IjrmrfqehF/exec" target="_top" class="sidebar-item">
       <i class="fas fa-shopping-cart"></i>
       <span>Advance Purchases Panel</span>
     </a>
-    <a href="YOUR_PETTY_CASH_PANEL_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a href="https://script.google.com/macros/s/AKfycbwkh4_T2ygXjLRn4-bt0p5VThfEMvX2jBW3nJD9BZwYpXurxUs6M5ilGz2OfGCCuRR8/exec" target="_top" class="sidebar-item">
       <i class="fas fa-wallet"></i>
       <span>Petty Cash Panel</span>
     </a>
-    <a href="YOUR_SETTINGS_DEPLOYMENT_LINK" target="_top" class="sidebar-item">
+    <a href="https://script.google.com/macros/s/AKfycbx4ult7m64buaRAzKks6HsfsHdxkp-WErvrRosKW8UBRiWU1KoKr3KeWIVOfOmcuwtC/exec" target="_top" class="sidebar-item">
       <i class="fas fa-cog"></i>
       <span>Settings</span>
     </a>
@@ -1462,6 +1466,10 @@
                 <button id="generateFormBtn" class="btn btn-edit">
                     <i class="fas fa-file-pdf"></i> Generate Form
                 </button>
+
+                <a id="getReportBtn" class="btn btn-save" target="_blank" href="#">
+                  <i class="fas fa-file-alt"></i> Get Report
+                </a>
             </div>
         </div>
     </div>
@@ -1895,6 +1903,11 @@
                             <span class="detail-value">${event.devices.length} device(s)</span>
                         </div>
                     </div>
+                    <div style="margin-top: 1rem;">
+                      <a class="btn btn-save" target="_blank" href="https://script.google.com/macros/s/AKfycbxrWYzKWb1CwhyxTxVafSa4y9tmFY8uFG82jWXxD42lF7XKrPSZdRq6amcKzlX9Pkqx/exec?id=${event.eventId}">
+                        <i class="fas fa-file-alt"></i> Get Report
+                      </a>
+                    </div>
                     <div class="event-id">
                         <i class="fas fa-hashtag"></i>ID: ${event.eventId}
                     </div>
@@ -1921,6 +1934,9 @@
         function showEventDetails(eventId) {
             currentEvent = allEvents.find(e => e.eventId === eventId);
             if (!currentEvent) return;
+
+            document.getElementById('getReportBtn').href =
+            `https://script.google.com/macros/s/AKfycbxrWYzKWb1CwhyxTxVafSa4y9tmFY8uFG82jWXxD42lF7XKrPSZdRq6amcKzlX9Pkqx/exec?id=${currentEvent.eventId}`;
 
             
             pendingFiles = {
